@@ -34,7 +34,7 @@ function Login() {
       if (response?.sucess === "true") {
         Swal.fire({
           title: "Success",
-          text: "Login Successfully",
+          text: response?.message,
           icon: "success",
           timer: 1000,
           showConfirmButton: false,

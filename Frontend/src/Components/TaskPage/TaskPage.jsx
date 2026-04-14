@@ -32,7 +32,7 @@ function TaskPage() {
       task: Task,
       requirement: Requirement,
       status: Status,
-      userId: getocaluserdata?.Userid,
+      userId: getocaluserdata?.userId,
     };
     try {
       if (!Task || !Requirement) {
@@ -43,7 +43,7 @@ function TaskPage() {
         });
       }
       await dispatch(CreateTaskAction(body));
-      await dispatch(FindTaskAction(user?.Userid || getocaluserdata?.Userid));
+      await dispatch(FindTaskAction(user?.userId || getocaluserdata?.userId));
     } catch (error) {
       Swal.fire({
         title: "Error!",
@@ -58,7 +58,7 @@ function TaskPage() {
       task: Task,
       requirement: Requirement,
       status: Status,
-      userId: getocaluserdata?.Userid,
+      userId: getocaluserdata?.userId,
     };
     try {
       if (!Task || !Requirement) {
@@ -76,7 +76,7 @@ function TaskPage() {
       });
       if (result.isConfirmed) {
         await dispatch(UpdateTaskAction(id, body));
-        await dispatch(FindTaskAction(user?.Userid || getocaluserdata?.Userid));
+        await dispatch(FindTaskAction(user?.userId || getocaluserdata?.userId));
 
         Swal.fire({
           title: "Deleted!",
@@ -97,7 +97,7 @@ function TaskPage() {
 
   useEffect(() => {
     if (user || getocaluserdata)
-      dispatch(FindTaskAction(getocaluserdata.Userid));
+      dispatch(FindTaskAction(getocaluserdata.userId));
   }, [user]);
 
   console.log("getocaluserdata : ", getocaluserdata);
@@ -125,7 +125,7 @@ function TaskPage() {
 
     if (result.isConfirmed) {
       await dispatch(DeleteTaskAction(id));
-      await dispatch(FindTaskAction(getocaluserdata.Userid));
+      await dispatch(FindTaskAction(getocaluserdata.userId));
 
       Swal.fire({
         title: "Deleted!",
